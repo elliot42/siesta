@@ -11,19 +11,19 @@ import siesta.application, siesta.routers
 from siesta.handlers import html_handler
 
 router = siesta.routers.resource_method_router({
-'': { 'GET': html_handler(lambda request: 'Hello world!') },
-'cats' : {
-    'GET': html_handler(lambda request: 'Cat GET!!!'),
-    'PUT': html_handler(lambda request: 'CAT PUT!!!'),
-},
-'dogs' : {},
+    '': { 'GET': html_handler(lambda request: 'Hello world!') },
+    'cats' : {
+        'GET': html_handler(lambda request: 'Cat GET!!!'),
+        'PUT': html_handler(lambda request: 'CAT PUT!!!'),
+    },
+    'dogs' : {},
 })
 
 app = siesta.application.application(router)
 
 if __name__ == "__main__":
-from werkzeug.serving import run_simple
-run_simple('localhost', 4000, app)
+    from werkzeug.serving import run_simple
+    run_simple('localhost', 4000, app)
 ```
 
 ## Key Concepts
