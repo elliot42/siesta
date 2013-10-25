@@ -9,4 +9,7 @@ setup(name='siesta',
       author_email='elliot@deck36.net',
       url='http://github.com/elliot42/siesta',
       packages=['siesta'],
+      install_requires=[
+          'werkzeug',
+      ],
      )
