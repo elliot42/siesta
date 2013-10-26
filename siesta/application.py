@@ -5,7 +5,6 @@ def application(application):
     def wsgi_application(environ, start_response):
         request = Request(environ)
         status_code, headers, body = application(request)
-        status = ' '.join([str(status_code), HTTP_STATUS_CODES[status_code]])
-        start_response(status, headers)
-        return body
+        response = Response(body, status=status_code, headers=headers)
+        return response(environ, start_response)
     return wsgi_application
