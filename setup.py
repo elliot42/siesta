@@ -8,7 +8,7 @@ setup(name='siesta',
       author='Elliot Block',
       author_email='elliot@deck36.net',
       url='http://github.com/elliot42/siesta',
-      packages=['siesta'],
+      packages=['siesta', 'siesta.application'],
       install_requires=[
           'werkzeug',
       ],
