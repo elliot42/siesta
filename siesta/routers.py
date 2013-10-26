@@ -6,7 +6,10 @@ def resource_router(routes):
     def handler(request):
         parse_result = urlparse(request.url)
         resource = parse_result.path.split('/')[1]
-        return routes[resource](request)
+        if resource in routes:
+            return routes[resource](request)
+        else:
+            return (404, [('Content-Type', 'text/html')], 'Not found')
     return handler
 
 def method_router(routes):
