@@ -15,5 +15,5 @@ def jinja_handler(template, data_provider):
         bindings = data_provider(request)
         return (200,
                 [('Content-Type', 'text/html')],
-                template.render(**bindings))
+                str(template.render(**bindings)))
     return handler
