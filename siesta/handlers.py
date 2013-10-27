@@ -1,3 +1,6 @@
+def passthrough(response):
+    return lambda request: reponse
+
 def html_handler(request_handler):
     """Returns a handler, given a function that:
         takes a request, and returns HTML"""
