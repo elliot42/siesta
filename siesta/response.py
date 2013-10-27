@@ -16,8 +16,4 @@ def method_not_allowed(
         headers=[('Content-Type', 'text/html')]):
     return response(status, headers, body)
 
-def ok(
-        status=200,
-        headers=[('Content-Type', 'text/html')],
-        body='200 OK'):
-    return response(status, headers, body)
+ok = (200, [('Content-Type', 'text/html')], '200 OK')
