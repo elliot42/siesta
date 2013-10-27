@@ -55,8 +55,31 @@ def resource_method_router(routes):
 
 def resource_router(resource_handler):
     """Given a class with `get`, `put`, `post`, `delete` methods,
-    return a corresponding router"""
+    return a corresponding method router.
 
+    This is just a slight bit of sugar over `method_router` that makes
+    it easier to declare a set of methods on a resource, rather than
+    having to deal with the dict literal syntax.
+
+    Instead of:
+
+        {
+            'GET': get_handler, # hard to write this function inline;
+            'PUT': put_handler, #   annoying to declare out-of-band
+            ...
+        }
+
+    You get:
+
+        class MyResource:
+            def get(self, request):
+                # ...
+            def put(self, request):
+                # ...
+
+    which is a bit easier to work with.  But it just gets converted
+    to the `method_router`
+    """
     resource_handler_instance = resource_handler()
     routes = { method_name:getattr(resource_handler_instance, method_name.lower())
                for method_name

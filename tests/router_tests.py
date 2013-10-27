@@ -29,3 +29,45 @@ def test_method_router_method_not_allowed():
     c = Client(app, BaseResponse)
     resp = c.post('/')
     assert resp.status_code == 405
+
+def test_resource_router_get_found_status():
+    class TestResource:
+        def get(self, request):
+            return responses.ok
+    router = routers.resource_router(TestResource)
+    app = siesta.application.application(router)
+    c = Client(app, BaseResponse)
+    resp = c.get('/')
+    assert resp.status_code == 200
+
+def test_resource_router_get_found_content():
+    class TestResource:
+        def get(self, request):
+            return responses.ok
+    router = routers.resource_router(TestResource)
+    app = siesta.application.application(router)
+
+    c = Client(app, BaseResponse)
+    resp = c.get('/')
+    assert ''.join(resp.response) == responses.ok[2]
+
+def test_resource_router_method_not_allowed_status():
+    class TestResource:
+        def get(self, request):
+            return responses.ok
+    router = routers.resource_router(TestResource)
+    app = siesta.application.application(router)
+    c = Client(app, BaseResponse)
+    resp = c.post('/')
+    assert resp.status_code == 405
+
+def test_resource_router_post():
+    class TestResource:
+        def post(self, request):
+            return responses.ok
+    router = routers.resource_router(TestResource)
+    app = siesta.application.application(router)
+
+    c = Client(app, BaseResponse)
+    resp = c.post('/')
+    assert resp.status_code == 200
