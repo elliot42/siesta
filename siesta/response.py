@@ -15,3 +15,9 @@ def method_not_allowed(
         body="405 Method Not Allowed",
         headers=[('Content-Type', 'text/html')]):
     return response(status, headers, body)
+
+def ok(
+        status=200,
+        headers=[('Content-Type', 'text/html')],
+        body='200 OK'):
+    return response(status, headers, body)
