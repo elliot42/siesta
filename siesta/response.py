@@ -10,10 +10,9 @@ def not_found(
         headers=[('Content-Type', 'text/html')]):
     return response(status, headers, body)
 
-def method_not_allowed(
-        status=405,
-        body="405 Method Not Allowed",
-        headers=[('Content-Type', 'text/html')]):
-    return response(status, headers, body)
+method_not_allowed = (
+    405, 
+    [('Content-Type', 'text/html')],
+    "405 Method Not Allowed")
 
 ok = (200, [('Content-Type', 'text/html')], '200 OK')
