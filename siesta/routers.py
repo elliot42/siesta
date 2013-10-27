@@ -53,7 +53,7 @@ def resource_method_router(routes):
         """
     return resource_router({k:method_router(v) for k, v in routes.iteritems()})
 
-def resource_router(resource_handler):
+def resource_router(resource_handler_descriptor_klass):
     """Given a class with `get`, `put`, `post`, `delete` methods,
     return a corresponding method router.
 
@@ -80,10 +80,10 @@ def resource_router(resource_handler):
     which is a bit easier to work with.  But it just gets converted
     to the `method_router`
     """
-    resource_handler_instance = resource_handler()
-    routes = { method_name:getattr(resource_handler_instance, method_name.lower())
+    resource_handler_descriptor = resource_handler_descriptor_klass()
+    routes = { method_name:getattr(resource_handler_descriptor, method_name.lower())
                for method_name
                in ['GET', 'PUT', 'POST', 'DELETE']
-               if hasattr(resource_handler, method_name.lower())
+               if hasattr(resource_handler_descriptor, method_name.lower())
              }
     return method_router(routes)
