@@ -1,4 +1,7 @@
 from urlparse import urlparse
+from functools import partial
+from siesta import handlers
+from siesta import response as responses
 
 def resource_router(routes):
     """Given a dict of routes from resource_name: handler_func, return
@@ -25,7 +28,10 @@ def method_router(routes):
     """
     def handler(request):
         method = request.method
-        return routes[method](request)
+        if method in routes:
+            return routes[method](request)
+        else:
+            return handlers.passthrough(responses.method_not_allowed)(request)
     return handler
 
 def resource_method_router(routes):
@@ -46,3 +52,15 @@ def resource_method_router(routes):
         }
         """
     return resource_router({k:method_router(v) for k, v in routes.iteritems()})
+
+def resource_router(resource_handler):
+    """Given a class with `get`, `put`, `post`, `delete` methods,
+    return a corresponding router"""
+
+    resource_handler_instance = resource_handler()
+    routes = { method_name:getattr(resource_handler_instance, method_name.lower())
+               for method_name
+               in ['GET', 'PUT', 'POST', 'DELETE']
+               if hasattr(resource_handler, method_name.lower())
+             }
+    return method_router(routes)
