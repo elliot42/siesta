@@ -1,5 +1,5 @@
 def passthrough(response):
-    return lambda request: reponse
+    return lambda request: response
 
 def html_handler(request_handler):
     """Returns a handler, given a function that:
