@@ -53,7 +53,7 @@ def resource_method_router(routes):
         """
     return resource_router({k:method_router(v) for k, v in routes.iteritems()})
 
-def resource_router(resource_handler_descriptor_klass):
+def resource_descriptor_router(resource_handler_descriptor_klass):
     """Given a class with `get`, `put`, `post`, `delete` methods,
     return a corresponding method router.
 
