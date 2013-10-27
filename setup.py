@@ -11,5 +11,6 @@ setup(name='siesta',
       packages=['siesta'],
       install_requires=[
           'werkzeug',
+          'jinja2',
       ],
      )
