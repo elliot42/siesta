@@ -14,7 +14,15 @@ def resource_router(routes):
 
 def method_router(routes):
     """Given a dict of routes from http_method: handler_func, return
-    a dispatching router."""
+    a dispatching router, e.g.
+
+    {
+        'GET': get_handler,
+        'PUT': put_handler,
+        'POST': post_handler,
+        'DELETE': delete_handler,
+    }
+    """
     def handler(request):
         method = request.method
         return routes[method](request)
@@ -24,5 +32,17 @@ def resource_method_router(routes):
     """Given a 2d dict of { resource_name: { http_method: handler_func } },
     return a dispatching router.
 
-    Works by composing a resource router with a method router."""
+    Works by composing a resource router with a method router.
+
+    Example:
+
+        {
+            'users': {
+                'GET': users_get_handler,
+            },
+            'items': {
+                'PUT': items_put_handler,
+            },
+        }
+        """
     return resource_router({k:method_router(v) for k, v in routes.iteritems()})
