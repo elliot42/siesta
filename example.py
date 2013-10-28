@@ -37,4 +37,4 @@ if __name__ == "__main__":
     run_simple('localhost', 4000, app)
 
 # curl http://localhost:4000/cats/15
-# => 'one cat!'
+# => 'get cat!'
