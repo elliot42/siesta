@@ -88,6 +88,20 @@ def resource_descriptor_router(resource_handler_descriptor_klass):
              }
     return method_router(routes)
 
+class Resource:
+    """Superclass/Mixin if you want to make your own Resource
+    descriptor classes turn into routers easily.
+
+    class MyResource(routers.Resource):
+        def get(self, request):
+            ...
+
+    router = MyResource()
+    """
+    def __call__(self, request):
+        router = resource_descriptor_router(self.__class__)
+        return router(request)
+
 class NestedResourceRouter:
     """Takes a route specification, and returns a handler that will
     route according to that specification.
