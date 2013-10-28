@@ -65,7 +65,7 @@ def test_resource_descriptor_router_post():
     class TestResource:
         def post(self, request):
             return responses.ok
-    router = routers.resource_router(TestResource)
+    router = routers.resource_descriptor_router(TestResource)
     app = siesta.application.application(router)
 
     c = Client(app, BaseResponse)
