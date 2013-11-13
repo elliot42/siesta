@@ -1,8 +1,7 @@
 # siesta
 
-`siesta` is a RESTful, functional web toolkit.  It's designed to give you power
-and clarity of your components, against the trend of sprawling,
-incomprehensible and sugary one-size-fits-all frameworks.
+`siesta` is a RESTful, functional web toolkit.  It's designed to give you
+simple components, not giant incomprehensible frameworks.
 
 ## Example
 
@@ -55,14 +54,13 @@ if __name__ == "__main__":
 
 ## Key Concepts
 
-`siesta` is based on a small number of powerful concepts:
+`siesta` is based on a few concepts:
 
-1. The HTTP request-response cycle maps beautifully to functional programming
-(FP).  All stages of request-to-response processing can be modeled as functions
-that take a request, and return a response.  The request handler functions
-_compose_ with each other into a pipeline that can express all our commonly
-needed operations, such as "check permissions before handling request."  FP
-handles all the guts of servicing requests powerfully and concisely.
+1. The HTTP request-response cycle maps cleanly to functional programming (FP):
+functions that take a request, and return a response.  The request handler
+functions _compose_ into a pipeline that can express common operations such as
+"check permissions before handling request."  FP handles all the guts of
+servicing requests powerfully and concisely.
 
 2. REST semantics are based on two minimal foundations: nouns (resources) and
 verbs (methods).  While REST has many other important aspects (e.g. HATEOAS),
@@ -71,22 +69,5 @@ methods to resources.  Therefore `siesta` provides as-obvious-as-possible
 resource-oriented routing handlers out of the box, but allows you to implement
 your own arbitrarily complex handlers should you truly need them.
 
-## Tenets
-
-`siesta` is built on three mutually reinforcing tenets:
-
-1. __Tools over frameworks__: build your app out of convenient interchangable
-parts, not the procrustean bed of an all-encompassing framework.
-
-2. __Explicit composition__: components are explicitly chained together so that
-you can understand them, control them, and augment them.
-
-3. __Minimal impedence mismatch__: components by default express themselves in
-the most direct, immediate and obvious relation to their responsibility.
-RESTful handlers are named directly for their HTTP verbs, not any other sugary
-abstraction.  The persistence layer will NOT be an ORM, but will speak the
-tuple language of the database itself.  This makes the system lean in both
-concepts and code, but leaves open the options for as much layering as you like.
-
-These three principles are designed to enable systems that are both powerful
-and understandable, productive and fun.
+3. The system should be based on a small set of explicitly composed tools,
+not a magically conventional framework.
