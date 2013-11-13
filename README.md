@@ -29,6 +29,9 @@ class DogHandler(siesta.routers.Resource):
     def get(self, request):
         return (200, [('Content-Type', 'text/html')], 'get dog!')
 
+def simple_handler(request):
+    return (200, [('Content-Type', 'text/html')], 'simple handler!')
+
 router = siesta.routers.NestedResourceRouter(
     (IndexHandler(), {
         'cats': (CatsHandler(), {
@@ -37,6 +40,7 @@ router = siesta.routers.NestedResourceRouter(
         'dogs': (None, {
             '*': DogHandler()
         }),
+        'meese': simple_handler,
     }))
 
 app = siesta.application.application(router)
