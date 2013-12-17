@@ -1,7 +1,8 @@
 # siesta
 
 `siesta` is a RESTful, functional web toolkit.  It's designed to give you
-simple components, not giant incomprehensible frameworks.
+simple components, not giant incomprehensible frameworks.  Based on
+Clojure's [Ring](https://github.com/ring-clojure/ring).
 
 ## Example
 
